@@ -230,10 +230,10 @@ hint = () => {
                 <div className='pv1'>{isCorrect ? 'Correct!' : <p>Incorrect! The correct answer is: <b>{currentWordFrench}</b></p>}
                     <div class="centered-container">
                         <div class="flex-container">
-                            <h6 className="border-right"><a href={`https://context.reverso.net/translation/french-english/${currentWordFrench}`} target="_blank">Examples and Context</a></h6>
+                            <h6 className="border-right"><a href={`https://context.reverso.net/translation/german-english/${currentWordFrench}`} target="_blank">Examples and Context</a></h6>
                             <h6><a className="clickable-element underline" onClick={this.Pronunciation}>Pronunciation</a></h6>
                             {(currentWordType === 'verb') && 
-                                <h6 className="border-left"><a href={`https://conjugator.reverso.net/conjugation-french-verb-${currentWordFrench}.html`} target="_blank">Verb Conjugations</a></h6>
+                                <h6 className="border-left"><a href={`https://conjugator.reverso.net/conjugation-german-verb-${currentWordFrench}.html`} target="_blank">Verb Conjugations</a></h6>
                             }
                         </div>
                     </div>  

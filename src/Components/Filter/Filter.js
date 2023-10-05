@@ -60,16 +60,16 @@ createCustomList = (input) => {
     console.log('filteredData1', filteredData1);
 
     // Filter the words to only include the types that the user wants (filter 2)
-    const filteredData2 = filteredData1.filter(item => selectedTypes.includes(item.type));
+    // const filteredData2 = filteredData1.filter(item => selectedTypes.includes(item.type));
     // console.log('filteredData2', filteredData2);
 
     // Filter for difficulty level
-    console.log(selectedDifficulty)
-    const filteredData3 = filteredData2.filter(item => selectedDifficulty.includes(item.difficulty));
+    // console.log(selectedDifficulty)
+    // const filteredData3 = filteredData2.filter(item => selectedDifficulty.includes(item.difficulty));
     // console.log('filteredData3', filteredData3);
 
     // Filter the words to only be the length that the user wants (filter 3)
-    const filteredData4 = filteredData3.slice(0, selectedNumberOfWords);
+    const filteredData4 = filteredData1.slice(0, selectedNumberOfWords);
     console.log('filteredData4', filteredData4);
 
     // filteredData3 is now the user-customised and randomised list 
@@ -216,7 +216,7 @@ handleDifficultyChange = (event) => {
               </div>
               <div className='btn'>
                 {/* <button className='grow pv1 white mv3 f4 br3 mh2 link dib bg-blue ' onClick={this.createCustomList(vocabulary2)}>Generate List and Begin!</button> */}
-                <button className='grow pv1 white mb2 f4 br3 mh2 link dib bg-blue' onClick={this.createCustomList.bind(this, vocabulary2)}>Generate List and Begin!</button>
+                <button className='grow pv1 white mb2 f4 br3 mh2 link dib bg-blue' onClick={this.createCustomList.bind(this, vocabulary)}>Generate List and Begin!</button>
                 {(readiness === 'ready') && (<div>Your words are ready!</div>)}
                 {(readiness === 'not ready') && (<h5>You haven't inputted sufficient details to setup the game!</h5>)}
               </div>

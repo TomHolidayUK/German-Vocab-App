@@ -12,7 +12,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       customList: [],
-      route: 'signin',
+      route: 'setup',
       // route: 'register',
       // route: 'setup',
       // route: 'game',
