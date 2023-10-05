@@ -143,8 +143,8 @@ handleToggle = () => {
 
 Pronunciation = async () => {
     const textToSynthesize = this.state.currentWordFrench;
-    // const response = await fetch(`http://localhost:3000/synthesize-speech?text=${textToSynthesize}`);
-    const response = await fetch(`https://learn-french-vocabulary-api-5d216bdc9555.herokuapp.com/synthesize-speech?text=${textToSynthesize}`);
+    const response = await fetch(`http://localhost:3000/synthesize-speech?text=${textToSynthesize}`);
+    // const response = await fetch(`https://learn-french-vocabulary-api-5d216bdc9555.herokuapp.com/synthesize-speech?text=${textToSynthesize}`);
 
     const audioData = await response.arrayBuffer();
 

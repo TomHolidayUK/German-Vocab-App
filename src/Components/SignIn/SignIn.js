@@ -39,8 +39,8 @@ class SignIn extends Component {
     }
     
     onSubmitSignIn = () => {
-        // fetch('http://localhost:3000/signin', {
-        fetch('https://learn-french-vocabulary-api-5d216bdc9555.herokuapp.com/signin', {
+        fetch('http://localhost:3000/signin', {
+        // fetch('https://learn-french-vocabulary-api-5d216bdc9555.herokuapp.com/signin', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -74,7 +74,7 @@ class SignIn extends Component {
                 {/* <div className="overlay"></div> */}
                 <video src={videoBg} autoPlay loop muted/>
                 <div className="content">
-                    <h3 className="opening-text">Welcome to the best place to learn French Vocabulary!</h3>
+                    <h3 className="opening-text">Welcome to the best place to learn German Vocabulary!</h3>
                     <h4 className="opening-text-2">Learn words from our extensive database of vocabulary using a language learning algorithm</h4>
                     <h4 className="opening-text-3">Sign in if you've been here before or if it's your first time, register an account with us!</h4>
                     {/* <article className="br3 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-15 center"> */}
