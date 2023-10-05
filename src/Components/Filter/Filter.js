@@ -65,11 +65,11 @@ createCustomList = (input) => {
 
     // Filter for difficulty level
     // console.log(selectedDifficulty)
-    // const filteredData3 = filteredData2.filter(item => selectedDifficulty.includes(item.difficulty));
+    const filteredData3 = filteredData1.filter(item => selectedDifficulty.includes(item.difficulty));
     // console.log('filteredData3', filteredData3);
 
     // Filter the words to only be the length that the user wants (filter 3)
-    const filteredData4 = filteredData1.slice(0, selectedNumberOfWords);
+    const filteredData4 = filteredData3.slice(0, selectedNumberOfWords);
     console.log('filteredData4', filteredData4);
 
     // filteredData3 is now the user-customised and randomised list 
@@ -150,19 +150,19 @@ handleDifficultyChange = (event) => {
       <div className="background-image2">
         <div className="all-content">
           <div id="wordCategory">
-            <nav className="header">
+            {/* <nav className="header">
               <div className="sign-out">
                   <p onClick={() => this.props.onRouteChange('signout')} className='f4 link dim underline pointer'>Sign Out</p>
               </div>
-            </nav>
+            </nav> */}
             {/* <div className="navbar">
               <nav className="flex"><h4 onClick={() => this.props.onRouteChange('signout')} className='text link dim underline ph3 pointer'>Sign Out</h4></nav>
             </div> */}
             <div className="center-content">
               <h1>Setup Page</h1>
-              <h5 className="welcome-small">{`Welcome ${name}`}</h5>
+              {/* <h5 className="welcome-small">{`Welcome ${name}`}</h5>
               <h5 className="welcome-medium">{`Hi ${name}, choose what words you want to learn`}</h5>
-              <h5 className="welcome-large">{`Hi ${name}, choose what words you want to learn, and this programme will make you a randomised list of words from our database that meet your requirements, then it's time to get learning!`}</h5>
+              <h5 className="welcome-large">{`Hi ${name}, choose what words you want to learn, and this programme will make you a randomised list of words from our database that meet your requirements, then it's time to get learning!`}</h5> */}
               <div className="pb3 pt2">
                 <h5>How many words do you want to learn?</h5>
                   <select
@@ -180,7 +180,7 @@ handleDifficultyChange = (event) => {
                   </select>
               </div>
               
-              <h5>What type of words do you want to learn?</h5>
+              {/* <h5>What type of words do you want to learn?</h5>
               <div className="tick-box">
                 <label className="fw6"><input type="checkbox" value="adjective" onChange={this.handleCheckboxChange} checked={selectedTypes.includes('adjective')}/>
                   Adjectives 
@@ -197,7 +197,7 @@ handleDifficultyChange = (event) => {
                 <label className="fw6"><input type="checkbox" checked={selectAllChecked} onChange={this.handleSelectAllChange}/>
                   <b>ALL</b>
                 </label>
-              </div>
+              </div> */}
               <div className="pb3 pt2">
                 <h5>What difficulty of words do you want to learn?</h5>
                   <select
@@ -208,10 +208,9 @@ handleDifficultyChange = (event) => {
                     <option disabled value="">
                       --Select Difficulty--
                     </option>
-                    <option value="beginner">Beginner</option>
-                    <option value="intermediate">Intermediate</option>
-                    <option value="advanced-1">Advanced 1</option>
-                    <option value="advanced-2" disabled>Advanced 2 (coming soon)</option>
+                    <option value="beginner">Beginner (1000 words)</option>
+                    <option value="intermediate" disabled>Intermediate (coming soon)</option>
+                    <option value="advanced-1" disabled>Advanced (coming soon)</option>
                   </select>
               </div>
               <div className='btn'>

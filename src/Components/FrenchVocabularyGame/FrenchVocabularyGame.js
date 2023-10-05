@@ -20,7 +20,8 @@ class FrenchVocabularyGame extends Component {
       stage: 'no results', // show results or not
       difficultMode: false,
       hint: '',
-      showPopup: false
+      showPopup: false,
+      initialLength: 0
     };
   }
 
@@ -82,7 +83,8 @@ if (isCorrect === true ) {
 
         // Update progress state
             // fetch('http://localhost:3000/progress', {
-            fetch('https://learn-french-vocabulary-api-5d216bdc9555.herokuapp.com/progress', {
+            // fetch('https://learn-french-vocabulary-api-5d216bdc9555.herokuapp.com/progress', {
+            fetch('https://learn-german-vocabulary-api-7718873809a1.herokuapp.com/progress', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -123,6 +125,8 @@ this.selectWord();
 componentDidMount() {
 this.selectWord(); // Select a word when the component mounts 
 // this.setState({ totalAttempts: 0 })
+const initialLength = this.props.customList.length;
+this.setState({ initialLength: initialLength })
 }
 
 // Method to handle the user pressing 'enter'
@@ -143,8 +147,9 @@ handleToggle = () => {
 
 Pronunciation = async () => {
     const textToSynthesize = this.state.currentWordFrench;
-    const response = await fetch(`http://localhost:3000/synthesize-speech?text=${textToSynthesize}`);
+    // const response = await fetch(`http://localhost:3000/synthesize-speech?text=${textToSynthesize}`);
     // const response = await fetch(`https://learn-french-vocabulary-api-5d216bdc9555.herokuapp.com/synthesize-speech?text=${textToSynthesize}`);
+    const response = await fetch(`https://learn-german-vocabulary-api-7718873809a1.herokuapp.com/synthesize-speech?text=${textToSynthesize}`);
 
     const audioData = await response.arrayBuffer();
 
@@ -197,7 +202,7 @@ hint = () => {
  
 
   render() {
-    const { currentWordEnglish, currentWordFrench, currentWordType, userInput, isCorrect, totalAttempts, correctAnswers, incorrectAnswers, difficultMode, hint, showPopup} = this.state;
+    const { currentWordEnglish, currentWordFrench, currentWordType, userInput, isCorrect, totalAttempts, correctAnswers, incorrectAnswers, difficultMode, hint, showPopup, initialLength} = this.state;
     // console.log('custom list in FrenchVocabularyGame.js', this.props.customList)
     return (
         <div className="background-image3" style={{ whiteSpace: 'pre' }}> 
@@ -205,12 +210,13 @@ hint = () => {
                 <nav className="header">
                     <div className="sign-out">
                         <p onClick={() => this.props.onRouteChange('setup')} className='nav-right f4 link dim underline pointer'>Select Words</p>
-                        <p onClick={() => this.props.onRouteChange('signout')} className='f4 link dim underline pointer'>Sign Out</p>
+                        {/* <p onClick={() => this.props.onRouteChange('signout')} className='f4 link dim underline pointer'>Sign Out</p> */}
                     </div>
                 </nav>
             <div className="middle-content">
-                <h2>French Vocabulary Game</h2>
-                {(totalAttempts > 0) && <ProgressBar completed={parseFloat((totalAttempts/(this.props.customList.length)*100).toFixed(2))} />}
+                <h2>German Vocabulary Game</h2>
+                {/* {(totalAttempts > 0) && <ProgressBar completed={parseFloat((totalAttempts/(this.props.customList.length)*100).toFixed(2))} />} */}
+                {(correctAnswers > 0) && <ProgressBar completed={parseFloat((correctAnswers/(initialLength)*100).toFixed(2))} />}
                 <h5>Translate the following:</h5>
                 <motion.p
                     key={currentWordEnglish} // Add the key prop here
@@ -228,8 +234,8 @@ hint = () => {
                 onKeyDown={this.handleKeyPress}/>
                 {isCorrect !== null && (
                 <div className='pv1'>{isCorrect ? 'Correct!' : <p>Incorrect! The correct answer is: <b>{currentWordFrench}</b></p>}
-                    <div class="centered-container">
-                        <div class="flex-container">
+                    <div className="centered-container">
+                        <div className="flex-container">
                             <h6 className="border-right"><a href={`https://context.reverso.net/translation/german-english/${currentWordFrench}`} target="_blank">Examples and Context</a></h6>
                             <h6><a className="clickable-element underline" onClick={this.Pronunciation}>Pronunciation</a></h6>
                             {(currentWordType === 'verb') && 
@@ -258,28 +264,9 @@ hint = () => {
                     </div>
                     <b>Difficult Mode</b>
                 </div>
-                <h6 className="pb1 wide-text">(In Difficult Mode you need to include all special charachters, for info on how to type special charachters in French, <b className="clickable-element" onClick={this.handlePopupClick}>click here</b>)</h6>
-                <div>
-                    {showPopup && (
-                    <div className="overlay">
-                        <div className="popup">
-                            <h2>French Special Charachters</h2>
-                            <p>
-                            é – the acute accent (l'accent aigu) <b>(Mac - Option/Alt + E, RELEASE, THEN E)</b><br />
-                            à/è/ì/ò/ù – the grave accent (l'accent grave) <b>(Mac = Option/Alt + `, RELEASE, THEN letter)</b><br />
-                            â/ê/î/ô/û – the circumflex (l'accent circonflexe) <b>(Mac = Option + I, RELEASE, THEN letter)</b><br />
-                            ç – the cedilla (la cédille) <b>(Mac = Option + C)</b><br />
-                            ë/ï/ü – the trema (l'accent tréma) <b>(Mac = Option + U, RELEASE, THEN letter)</b><br />
-                            œ -e dans l'o <b>(Mac = Option/Alt + Q)</b><br /><br />
-
-                            Windows are way behind on this and there are no keyboard shortcuts available on my machine. Therefore I recommend copying and paste'ing from the charchters above.<br />
-                            </p>
-                            <button onClick={this.handleCloseClick}>Close</button>
-                        </div>
-                    </div>
-                    )}
+                <div className="wide-text-container">
+                    <h6 className="pb1 wide-text">(In 'Difficult Mode' you need to include all special charachters)</h6>
                 </div>
-
                 <div className='f4 progress-box'>
                     <div className='bordered-content'>
                         <h5><b>Your progress:</b></h5>
